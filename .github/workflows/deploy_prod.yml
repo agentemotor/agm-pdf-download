@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - main
+name: 🚀 Publish Data Into AWS
+jobs:
+  AWS-Lambda-Deploy:
+    name: 🎉 Lambda Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@master
+
+      - name: 🛹 Delete .git folder
+        run: rm -r ./.git
+
+      - name: 🎗️ Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+
+      - name: 🔨 Build Project
+        run: npm install --only=production
+
+      - name: 🐢 Zip project
+        run: zip -r build.zip ./ && cp ./build.zip ..
+
+      - name: 🛩️ Upload to Lambda
+        uses: kazimanzurrashid/aws-lambda-update-action@v1
+        with:
+          zip-file: "./build.zip"
+          lambda-name: "pdf-download-func"
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
