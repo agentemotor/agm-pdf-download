@@ -1,0 +1,25 @@
+{
+  "name": "pdf-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@progress/kendo-react-pdf": "^5.9.0",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "html-pdf-node": "^1.0.8",
+    "jsdom": "^20.0.3",
+    "lz-string": "^1.4.4",
+    "nodemon": "^2.0.20",
+    "puppeteer": "^19.4.0",
+    "puppeteer-core": "^19.4.1"
+  }
+}
