@@ -9,9 +9,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "chrome-aws-lambda": "^10.1.0",
-    "puppeteer": "^19.4.1"
-  }
+  "license": "ISC"
 }
