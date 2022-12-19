@@ -1,27 +1,27 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const port = 3001;
+// const express = require("express");
+// const app = express();
+// const cors = require("cors");
+const chromium = require('chrome-aws-lambda');
+// const port = 3001;
 
-app.use(cors());
-app.get("/", async (req, res) => {
-  try{
-    const [pdfBuffer,pdfName] = await main()
-    res.set("Content-Type", "application/pdf");
-    console.log(pdfBuffer)
-    res.set("Content-Disposition", `attachment; filename="${pdfName}.pdf"`);
-    res.status(200).send(pdfBuffer);
-  }catch(e) {
-    res.send(e)
-  }
-});
+// app.use(cors());
+// app.get("/", async (req, res) => {
+//   try{
+//     const [pdfBuffer,pdfName] = await main()
+//     res.set("Content-Type", "application/pdf");
+//     console.log(pdfBuffer)
+//     res.set("Content-Disposition", `attachment; filename="${pdfName}.pdf"`);
+//     res.status(200).send(pdfBuffer);
+//   }catch(e) {
+//     res.send(e)
+//   }
+// });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
 
 async function main() {
-  const chromium = require('chrome-aws-lambda');
   let browser = null;
   browser = await chromium.puppeteer.launch({
     args: chromium.args,
@@ -48,5 +48,5 @@ async function main() {
   return [pdfBuffer,pdfName]
 }
 
-// main()
+main()
 
